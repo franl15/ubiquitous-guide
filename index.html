@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Sofi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fce3e1;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        #clickBtn {
+            font-size: 20px;
+            background-color: #f7a4b3;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: none;
+            color: white;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        #clickBtn:hover {
+            transform: scale(1.1);
+        }
+
+        .message {
+            display: none;
+            font-size: 30px;
+            color: #e55d7a;
+            margin-top: 40px;
+            font-weight: bold;
+        }
+
+        .hearts, .flowers {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .heart, .flower {
+            position: absolute;
+            animation: float 4s infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-100px); }
+            100% { transform: translateY(0); }
+        }
+
+        .heart {
+            color: #ff5858;
+            font-size: 30px;
+        }
+
+        .flower {
+            color: #f4b0c4;
+            font-size: 25px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <button id="clickBtn">Para Sofi, ¡dale click aquí!</button>
+    <div class="message">
+        <p>¡Eres increíble, Sofi! Nunca olvides lo valiosa y especial que eres.</p>
+        <p>Te quiero mucho.</p>
+    </div>
+
+    <div class="hearts"></div>
+    <div class="flowers"></div>
+
+    <script>
+        const clickBtn = document.getElementById('clickBtn');
+        const message = document.querySelector('.message');
+        const heartsContainer = document.querySelector('.hearts');
+        const flowersContainer = document.querySelector('.flowers');
+
+        clickBtn.addEventListener('click', () => {
+            clickBtn.style.display = 'none';  // Oculta el botón
+            message.style.display = 'block';  // Muestra el mensaje
+
+            // Crear corazones animados
+            for (let i = 0; i < 10; i++) {
+                let heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.animationDelay = `${Math.random() * 2}s`;
+                heartsContainer.appendChild(heart);
+            }
+
+            // Crear flores animadas
+            for (let i = 0; i < 10; i++) {
+                let flower = document.createElement('div');
+                flower.classList.add('flower');
+                flower.innerHTML = '🌸';
+                flower.style.left = `${Math.random() * 100}%`;
+                flower.style.animationDelay = `${Math.random() * 2}s`;
+                flowersContainer.appendChild(flower);
+            }
+        });
+    </script>
+
+</body>
+</html>
